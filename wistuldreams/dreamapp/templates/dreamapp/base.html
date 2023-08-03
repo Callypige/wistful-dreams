@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %} Wistful Dreams</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-violet-950">
+    <nav class="flex items-center justify-between px-4 py-6 bg-violet-700">
+      <div>
+        <a href="/" class="text-xl text-white">Home</a>
+      </div>
+      <div class="flex items-center space-x-4">
+        {% comment %} {% if request.user.is_authenticated %}
+          <h3 class="text-white hover:text-gray-200">Hello, {{request.user.username}}</h3>
+          <a href="/rooms" class="text-white hover:text-gray-200">Rooms</a>
+          <a
+            href="/logout/"
+            class="px-5 py-3 rounded-xl text-white bg-orange-600 hover:bg-orange-700"
+            >Log out</a
+          >
+        {%else %}
+          <a href="/login/" class="text-white hover:text-gray-200">Log in</a>
+          <a
+            href="/signup/"
+            class="px-5 py-3 rounded-xl text-white bg-orange-600 hover:bg-orange-700"
+            >Sign up</a
+          >
+        {% endif %} {% endcomment %}
+      </div>
+    </nav>
+
+    {% block content %}
+    {% endblock%}
+
+    {% block script %}
+    {% endblock%}
+  </body>
+</html>
