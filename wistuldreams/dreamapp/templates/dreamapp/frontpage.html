@@ -3,5 +3,25 @@
 {% block content %}
 <div class="p-10 lg:p-20 text-center">
   <h1 class="font-serif Cambria text-3xl lg:text-6xl text-white">Wistful Dreams</h1>
+  <p class="font-serif Cambria text-gray-400"><b>Tes rêves enregistrés jusqu'à aujourd'hui</b></p>
+  <div class="mt-10 lg:mt-20">
+    <!-- Panneau latéral (menu coulissant pour petits écrans) -->
+    <div class="w-full bg-white rounded-lg shadow-lg p-4">
+        <i class="fas fa-pencil-alt text-gray-800"></i>
+        <a href="/add/" class="px-3 py-1 text-violet hover:text-violet-800">Ajout d'un rêve</a>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="bg-white rounded-lg shadow-lg p-4 mt-4">  <!-- Ajout de cette div pour envelopper le contenu principal -->
+      {% for dream in dreams %}
+        <div class="border-b border-gray-300 mb-4">
+          <h2 class="text-lg font-medium text-gray-800">{{ dream.title }}</h2>
+          <p class="text-sm text-gray-600">{{ dream.content }}</p>
+        </div>
+      {% empty %}
+        <p class="font-serif Cambria text-gray-600"><b>Oh ? Pas encore de rêve enregistré...</b></p>
+      {% endfor %}
+    </div> <!-- Fin de la div enveloppante -->
+  </div>
 </div>
 {% endblock %}

@@ -5,11 +5,12 @@ from . import views
 
 urlpatterns = [
     path("", views.frontpage, name="frontpage"),
+    path("add/", views.add_dreams, name="add-dreams"),
     path("signup/", views.signup, name="signup"),
     path(
         "login/",
         auth_views.LoginView.as_view(template_name="dreamapp/login.html"),
         name="login",
     ),
-    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path("logout/", auth_views.LogoutView.as_view(next_page="/"), name="logout"),
 ]

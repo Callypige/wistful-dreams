@@ -1,0 +1,59 @@
+{% extends 'dreamapp/base.html' %} 
+{% block title %} Ajouter un rêve | {% endblock %}
+{% block content %}
+<div class="p-10 lg:p-20 text-white">
+  <h1 class="text-3xl lg:text-4xl font-semibold mb-6">Ajouter un rêve</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-4">
+      <label class="block font-semibold rounded-lg">Titre : </label>
+      {{ form.title }}
+      <span class="text-red-500">{{ form.title.errors }}</span>
+    </div>  
+    <div class="mb-4">
+      <label for="{{ form.content.id_for_label }}" class="block font-semibold">Contenu :</label>
+      <textarea
+        name="{{ form.content.name }}"
+        id="{{ form.content.id_for_label }}"
+        rows="4"
+        class="block w-full px-2.5 py-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+        placeholder="Votre contenu..."
+      >{{ form.content.value }}</textarea>
+      <span class="text-red-500">{{ form.content.errors }}</span>
+    </div>
+    <div class="mb-4">
+      <label for="{{ form.commentary.id_for_label }}" class="block font-semibold">Commentaire :</label>
+      <textarea
+        name="{{ form.commentary.name }}"
+        id="{{ form.commentary.id_for_label }}"
+        rows="4"
+        class="block w-full px-2.5 py-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+        placeholder="Votre commentaire..."
+      >{{ form.commentary.value }}</textarea>
+      <span class="text-red-500">{{ form.commentary.errors }}</span>
+    </div>    
+    <div class="mb-4">
+      <label for="{{ form.is_recurring.id_for_label }}" class="block font-semibold">
+        {{ form.is_recurring }} Rêve récurrent
+      </label>
+      <span class="text-red-500">{{ form.is_recurring.errors }}</span>
+    </div>
+    <div class="mb-4">
+      <label for="{{ form.category.id_for_label }}" class="block font-semibold">Catégorie :</label>
+      <span class="text-black">{{ form.category }}</span>
+      <span class="text-red-500">{{ form.category.errors }}</span>
+    </div>
+    <div class="mb-4">
+      <label for="{{ form.mood.id_for_label }}" class="block font-semibold">Humeur :</label>
+      <span class="text-black">{{ form.mood }}</span>
+      <span class="text-red-500">{{ form.mood.errors }}</span>
+    </div>
+    <div class="mb-4">
+      <label for="{{ form.tags.id_for_label }}" class="block font-semibold">Tags (séparés par des virgules) :</label>
+      <span class="text-black">{{ form.tags }}</span>
+      <span class="text-red-500">{{ form.tags.errors }}</span>
+    </div>   
+    <button type="submit" class="px-4 py-2 bg-teal-500 text-white rounded-lg">Ajouter le rêve</button>
+  </form>
+</div>
+{% endblock %}
