@@ -1,14 +1,27 @@
 {% extends 'dreamapp/base.html' %} 
 {% block title %} Ajouter un rêve | {% endblock %}
 {% block content %}
+<style>
+  .editor-datetime {
+      position: relative;
+   }
+   .editor-datetime .input-group-text {
+    color: black;
+}
+</style>
 <div class="p-10 lg:p-20 text-white">
   <h1 class="text-3xl lg:text-4xl font-semibold mb-6">Ajouter un rêve</h1>
   <form method="post">
     {% csrf_token %}
     <div class="mb-4">
       <label class="block font-semibold rounded-lg">Titre : </label>
-      {{ form.title }}
+      <span class="text-black">{{ form.title }}</span>
       <span class="text-red-500">{{ form.title.errors }}</span>
+    </div>  
+    <div class="mb-4">
+      <label for="{{ form.date.id_for_label }}" class="block font-semibold">Date :</label>
+      <span class="editor-datetime text-black">{{ form.date }}</span>
+      <span class="text-red-500">{{ form.date.errors }}</span>
     </div>  
     <div class="mb-4">
       <label for="{{ form.content.id_for_label }}" class="block font-semibold">Contenu :</label>

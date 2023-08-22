@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import datetime
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -30,6 +30,7 @@ class Dream(models.Model):
     content = models.TextField(max_length=300)
     commentary = models.TextField(max_length=150)
     is_recurring = models.BooleanField(default=False)
+    date = models.DateTimeField(default=datetime.datetime.now)
     date_added = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     mood = models.CharField(max_length=20, choices=MOOD_CHOICES)

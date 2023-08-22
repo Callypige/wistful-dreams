@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Dream, CATEGORY_CHOICES, MOOD_CHOICES
 from django import forms
+from tempus_dominus.widgets import DateTimePicker
 
 
 class SignUpForm(UserCreationForm):
@@ -17,6 +18,7 @@ class AddDreamForm(forms.ModelForm):
             "title",
             "content",
             "commentary",
+            "date",
             "is_recurring",
             "category",
             "mood",
@@ -38,4 +40,27 @@ class AddDreamForm(forms.ModelForm):
                 "placeholder": "Tag1, Tag2, ...",
             }
         )
+    )
+
+    title = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "class": "w-full border rounded-lg px-3 py-2",
+            }
+        )
+    )
+
+    date = forms.DateTimeField(
+        widget=DateTimePicker(
+            options={
+                "useCurrent": True,
+                "collapse": False,
+                "format": "YYYY-MM-DD",
+            },
+            attrs={
+                "class": "w-full border rounded-lg px-3 py-2",
+                "append": "fa fa-calendar",
+                "icon_toggle": True,
+            },
+        ),
     )
