@@ -16,7 +16,8 @@
       {% for dream in dreams %}
         <div class="border-b border-gray-300 mb-4">
           <h2 class="text-lg font-medium text-gray-800">{{ dream.title }}</h2>
-          <p class="text-sm text-gray-600">{{ dream.content }}</p>
+          <p class="text-sm text-gray-600">{{ dream.content }}</p><br/>
+          <a href="/show/{{ dream.id }}" class="px-3 py-1 text-violet-800 hover:text-violet-400">Afficher</a>
         </div>
       {% empty %}
         <p class="font-serif Cambria text-gray-600"><b>Oh ? Pas encore de rêve enregistré...</b></p>

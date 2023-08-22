@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
+from django.shortcuts import get_object_or_404
 
 from .models import Dream, Tag
 from .forms import AddDreamForm
@@ -70,3 +71,8 @@ def add_dreams(request):
         form = AddDreamForm()
 
     return render(request, "dreamapp/add_dream.html", {"form": form})
+
+
+def show_dream(request, id):
+    dream = get_object_or_404(Dream, id=id)
+    return render(request, "dreamapp/show_dream.html", {"dream": dream})

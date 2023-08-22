@@ -1,0 +1,28 @@
+{% extends 'dreamapp/base.html' %} 
+{% block title %} Welcome | {% endblock %}
+{% block content %}
+<div class="p-10 lg:p-20 text-center">
+    <div class="bg-white rounded-lg shadow-lg p-4 mt-4">  
+        <div class="border-b border-gray-300 mb-4">
+            <h2 class="text-lg font-medium text-gray-800">{{ dream.title }}</h2>
+        </div>
+        <div class="border-b border-gray-300 mb-4">
+          <h2 class="mb-2 text-gray-800">Rêve du {{ dream.date|date:"l j F" }}</h2>
+          <p class="mb-2 text-sm text-gray-600">{{ dream.content }}</p>
+          <p class="mb-2 text-sm text-gray-600"><b>Commentaire :</b> </br/> {{ dream.commentary }}</p>
+          <p class="mb-2 text-sm text-gray-600"><b>Catégorie : </b>{{ dream.get_category_display }}</p>
+          <p class="mb-2 text-sm text-gray-600"><b>Humeur : </b>{{ dream.get_mood_display }}</p>
+          <p class="mb-2 text-sm text-gray-600"><b>Rêve récurrent </b> : Non {% if dream.is_recurring %} Oui {% endif %}</p>
+          <p>Tags :
+            {% for tag in dream.tags.all %}
+              <span class="tag">{{ tag.name }}</span>
+            {% endfor %}
+          </p>
+        </div>
+    </div> 
+  </div>
+</div>
+<div class="text-center mt-4">
+    <a href="/" class="px-3 py-1 text-white hover:text-gray-200">Revenir sur la liste des rêves</a>
+</div> 
+{% endblock %}
